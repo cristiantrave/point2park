@@ -1,0 +1,10 @@
+
+
+{
+  "name": "miWebServer",
+  "description": "Servidor web de prueba",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "3.x"
+  }
+}
