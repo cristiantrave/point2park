@@ -22,3 +22,18 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+.controller('indexCtrl',function($scope,$http){
+  console.log("You are enter in index.html");
+ $http.get('http://localhost:3000/').
+    success(function(data) {
+      $scope.name = data;
+      console.log(status);
+    })
+    .
+    error(function(data, status, headers, config) {
+                 console.log(status);
+             })
+})
+
+
