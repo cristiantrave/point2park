@@ -34,8 +34,9 @@ angular.module('starter', ['ionic'])
   .state('tab.parking',{
     url: '/parking',
     views: {
-      'tab-parking':{
-        templateUrl: 'templates/parking.html'
+      'tab-parking': {
+        templateUrl: 'templates/parking.html',
+        controller: 'ParkingCtrl'
       }
     }
   })
@@ -44,7 +45,8 @@ angular.module('starter', ['ionic'])
     url: '/options',
     views: {
       'tab-options':{
-        templateUrl: 'templates/options.html'
+        templateUrl: 'templates/options.html',
+        controller: 'OptionsCtrl'
       }
     }
   })
@@ -53,12 +55,25 @@ angular.module('starter', ['ionic'])
     url: '/info',
     views: {
       'tab-info':{
-        templateUrl: 'templates/info.html'
+        templateUrl: 'templates/info.html',
+        controller: 'InfoCtrl'
       }
     }
   })
 
 $urlRouterProvider.otherwise('/tab/parking');
+})
+
+.controller('ParkingCtrl', function($scope){
+  console.log("Parking lots");
+})
+
+.controller('OptionsCtrl', function($scope){
+  console.log("Options");
+})
+
+.controller('InfoCtrl', function($scope){
+  console.log("Info");
 })
 /*
 .controller('indexCtrl',function($scope,$http){
