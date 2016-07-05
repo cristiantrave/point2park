@@ -22,7 +22,27 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+.config(function($stateProvider, $urlRouterProvider){
+  $stateProvider
 
+  .state('tab',{
+    url: '/tab',
+    abstract: true,
+    templateUrl: 'templates/tab.html'
+  })
+
+  .state('tab.parking',{
+    url: '/parking',
+    views: {
+      'tab-parking':{
+        templateUrl: 'templates/parking.html'
+      }
+    }
+  })
+
+$urlRouterProvider.otherwise('/tab/parking');
+})
+/*
 .controller('indexCtrl',function($scope,$http){
   console.log("You are enter in index.html");
  $http.get('http://localhost:3000/').
@@ -35,5 +55,4 @@ angular.module('starter', ['ionic'])
                  console.log(status);
              })
 })
-
-
+*/

@@ -21,43 +21,10 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter" ng-controller="indexCtrl">
+  <body ng-app="starter">
 
-    <ion-pane>
+    <ion-nav-view>
 
-      <ion-header-bar class="bar-calm">
-        <h1 class="title">Point2Park</h1>
-      </ion-header-bar>
-
-      <ion-content class="has-subheader">
-
-        <div class="card">
-          <div class="item item-divider">
-            <h2 class="title">Zones</h2>
-          </div>
-          <div class="item item-text-wrap">
-            Proin iaculis leo et lacus porttitor, sit amet rutrum justo eleifend.
-            Aliquam quis mattis lacus. Cras in lorem at tellus feugiat lobortis.
-            Donec consequat nulla eget tempor dictum. Ut mollis velit blandit tristique
-            rutrum. In in lorem malesuada, elementum tellus in, feugiat augue. Ut sed
-            ante tortor. Sed et dui pellentesque, eleifend turpis in, euismod sapien.
-            Praesent et quam purus. In convallis dignissim ex, vel tristique enim dictum in.
-          </div>
-        </div>
-
-        <ion-list>
-          <ion-item ng-repeat="x in name">
-            <span>Hello world, my name is {{x.firstName}} {{x.lastName}}!</span>
-          </ion-item>
-        </ion-list>
-
-      </ion-content>
-
-      <ion-tabs class="tab-icon-only tabs-striped tabs-background-calm tabs-top tabs-color-light">
-        <ion-tab icon="ion-ios-barcode"></ion-tab>
-        <ion-tab icon="ion-gear-a"></ion-tab>
-      </ion-tabs>
-
-    </ion-pane>
+    </ion-nav-view>
   </body>
 </html>
