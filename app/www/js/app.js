@@ -40,6 +40,24 @@ angular.module('starter', ['ionic'])
     }
   })
 
+  .state('tab.options',{
+    url: '/options',
+    views: {
+      'tab-options':{
+        templateUrl: 'templates/options.html'
+      }
+    }
+  })
+
+  .state('tab.info',{
+    url: '/info',
+    views: {
+      'tab-info':{
+        templateUrl: 'templates/info.html'
+      }
+    }
+  })
+
 $urlRouterProvider.otherwise('/tab/parking');
 })
 /*
