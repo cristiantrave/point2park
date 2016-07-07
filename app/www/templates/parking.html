@@ -6,9 +6,9 @@
 -->
   <ion-content>
 
-    <div class="list">
+    <div class="list" ng-repeat="parkinglot in parkinglots track by $index">
       <div class="item item-divider">
-        Parquesol (zona norte)
+        {{parkinglot.name}} ({{parkinglot.zone}})
       </div>
       <a class="item item-icon-center">
         <div class="row">
@@ -16,7 +16,7 @@
             <span style="font-size: 22px; color:grey">4 km</span>
           </div>
           <div class="col">
-            <span class="balanced" style="font-size: 22px">45 </span><i class="ion-android-car balanced" style="font-size: 22px"></i>
+            <span class="balanced" style="font-size: 22px">{{parkinglot.free}} </span><i class="ion-android-car balanced" style="font-size: 22px"></i>
           </div>
           <div class="col">
             <button class="button button-small button-energized">
@@ -32,12 +32,12 @@
 
       </a>
     </div>
-
+    <!--
     <ion-list>
-      <ion-item ng-repeat="x in parkinglots track by $index">
-        <span>Hello world, my name is {{x.name}}!</span>
+      <ion-item ng-repeat="parkinglot in parkinglots track by $index">
+        <span>Hello world, my name is {{parkinglot.name}} {{parkinglot.subname}}!</span>
       </ion-item>
     </ion-list>
-
+    -->
   </ion-content>
 </ion-view>

@@ -14,6 +14,17 @@ app.get('/', function(req, res){
 
   db.loadDatabase({}, function () {
   var users = db.getCollection('parkinglots')
+  /*
+  EXAMPLE COLLECTION INSERT
+  users.insert(
+    {
+        name: 'Delicias',
+        zone: 'Zona sur',
+        free: 3
+    }
+  );
+  db.saveDatabase();
+  */
   res.json(users.data);
   console.log(users.data);
 });
