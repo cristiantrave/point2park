@@ -34,8 +34,8 @@
     </div>
 
     <ion-list>
-      <ion-item ng-repeat="x in name">
-        <span>Hello world, my name is {{x.firstName}} {{x.lastName}}!</span>
+      <ion-item ng-repeat="x in parkinglots track by $index">
+        <span>Hello world, my name is {{x.name}}!</span>
       </ion-item>
     </ion-list>
 

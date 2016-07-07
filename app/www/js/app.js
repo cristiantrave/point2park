@@ -64,8 +64,18 @@ angular.module('starter', ['ionic'])
 $urlRouterProvider.otherwise('/tab/parking');
 })
 
-.controller('ParkingCtrl', function($scope){
+.controller('ParkingCtrl', function($scope, $http){
   console.log("Parking lots");
+  $http.get('http://localhost:3000/').
+     success(function(data) {
+       $scope.parkinglots = data;
+       //console.log($scope.name);
+       console.log(status);
+})
+.
+error(function(data, status, headers, config) {
+             console.log(status);
+         })
 })
 
 .controller('OptionsCtrl', function($scope){
