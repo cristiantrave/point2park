@@ -66,16 +66,60 @@ $urlRouterProvider.otherwise('/tab/parking');
 
 .controller('ParkingCtrl', function($scope, $http){
   console.log("Parking lots");
+
   $http.get('http://localhost:3000/').
-     success(function(data) {
-       $scope.parkinglots = data;
-       //console.log($scope.name);
-       console.log(status);
-})
-.
-error(function(data, status, headers, config) {
-             console.log(status);
-         })
+  success(function(data) {
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+      $scope.distance(data[i].lat,data[i].lon,$scope,data[i]);
+    }
+    console.log(data);
+    console.log(data);
+    $scope.parkinglots = data;
+  })
+  .
+  error(function(data, status, headers, config) {
+    console.log(status);
+  })
+
+  $scope.doRefresh = function() {
+    $http.get('http://localhost:3000/').
+    success(function(data) {
+      $scope.parkinglots = data;
+    })
+    .
+    error(function(data, status, headers, config) {
+      console.log(status);
+    })
+    $scope.$broadcast('scroll.refreshComplete');
+    $scope.$apply()
+  };
+
+  //DISTANCE MATRIX SERVICE
+  $scope.distance = function(lat, lon,$scope,data) {
+    var origin = new google.maps.LatLng(41.648229,-4.729198);
+    var destination = new google.maps.LatLng(lat,lon);
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+      origins: [origin],
+      destinations: [destination],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+      avoidHighways: false,
+      avoidTolls: false,
+      durationInTraffic: false
+    }, function(response, status) {
+      if (status != google.maps.DistanceMatrixStatus.OK) {
+        alert('Error was: ' + status);
+      } else {
+        console.log(Math.round(response.rows[0].elements[0].distance.value/1000));
+        $scope.dist = Math.round(response.rows[0].elements[0].distance.value/1000);
+        data.distance = $scope.dist
+        //document.getElementById(id).innerHTML = Math.round(response.rows[0].elements[0].distance.value/1000)+" km";
+      }
+
+    });
+  }
 })
 
 .controller('OptionsCtrl', function($scope){
@@ -85,17 +129,3 @@ error(function(data, status, headers, config) {
 .controller('InfoCtrl', function($scope){
   console.log("Info");
 })
-/*
-.controller('indexCtrl',function($scope,$http){
-  console.log("You are enter in index.html");
- $http.get('http://localhost:3000/').
-    success(function(data) {
-      $scope.name = data;
-      console.log(status);
-    })
-    .
-    error(function(data, status, headers, config) {
-                 console.log(status);
-             })
-})
-*/

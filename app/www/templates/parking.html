@@ -5,15 +5,18 @@
   </ion-header-bar>
 -->
   <ion-content>
-
-    <div class="list" ng-repeat="parkinglot in parkinglots track by $index">
+    <ion-refresher pulling-text="Pull To Refresh" on-refresh="doRefresh()"
+              refreshing-text="Fetching ..." refreshing-icon="ion-loading-b"
+            ></ion-refresher>
+    <div class="list" ng-repeat="parkinglot in parkinglots | orderBy:-'free'"> <!-- track by $index -->
       <div class="item item-divider">
         {{parkinglot.name}} ({{parkinglot.zone}})
       </div>
       <a class="item item-icon-center">
         <div class="row">
           <div class="col">
-            <span style="font-size: 22px; color:grey">4 km</span>
+            <span style="font-size: 22px; color:grey">{{parkinglot.distance}} km</span>
+            <!--temp init ng-init="distance(parkinglot.lat, parkinglot.lon,parkinglot.$loki);" -->
           </div>
           <div class="col">
             <span class="balanced" style="font-size: 22px">{{parkinglot.free}} </span><i class="ion-android-car balanced" style="font-size: 22px"></i>
@@ -32,12 +35,5 @@
 
       </a>
     </div>
-    <!--
-    <ion-list>
-      <ion-item ng-repeat="parkinglot in parkinglots track by $index">
-        <span>Hello world, my name is {{parkinglot.name}} {{parkinglot.subname}}!</span>
-      </ion-item>
-    </ion-list>
-    -->
   </ion-content>
 </ion-view>
