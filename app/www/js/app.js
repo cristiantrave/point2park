@@ -67,33 +67,37 @@ $urlRouterProvider.otherwise('/tab/parking');
 .controller('ParkingCtrl', function($scope, $http){
   console.log("Parking lots");
 
-  $http.get('http://localhost:3000/').
-  success(function(data) {
-    console.log(data);
-    for (var i = 0; i < data.length; i++) {
-      $scope.distance(data[i].lat,data[i].lon,$scope,data[i]);
-    }
-    console.log(data);
-    console.log(data);
-    $scope.parkinglots = data;
-  })
-  .
-  error(function(data, status, headers, config) {
-    console.log(status);
-  })
 
-  $scope.doRefresh = function() {
+  //$scope.getData = function(){
+    //$scope.check = false;
     $http.get('http://localhost:3000/').
     success(function(data) {
       $scope.parkinglots = data;
+      console.log(data);
     })
     .
     error(function(data, status, headers, config) {
       console.log(status);
     })
-    $scope.$broadcast('scroll.refreshComplete');
-    $scope.$apply()
-  };
+
+    $scope.doRefresh = function() {
+      $http.get('http://localhost:3000/').
+      success(function(data) {
+        $scope.parkinglots = data;
+      })
+      .
+      error(function(data, status, headers, config) {
+        console.log(status);
+      })
+      $scope.$broadcast('scroll.refreshComplete');
+      $scope.$apply()
+    };
+
+  //}
+  /*
+  //$scope.getData();
+
+
 
   //DISTANCE MATRIX SERVICE
   $scope.distance = function(lat, lon,$scope,data) {
@@ -114,12 +118,15 @@ $urlRouterProvider.otherwise('/tab/parking');
       } else {
         console.log(Math.round(response.rows[0].elements[0].distance.value/1000));
         $scope.dist = Math.round(response.rows[0].elements[0].distance.value/1000);
-        data.distance = $scope.dist
+        data.distance = $scope.dist;
         //document.getElementById(id).innerHTML = Math.round(response.rows[0].elements[0].distance.value/1000)+" km";
       }
 
     });
   }
+
+  $scope.getData()
+*/
 })
 
 .controller('OptionsCtrl', function($scope){

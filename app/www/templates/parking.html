@@ -8,21 +8,21 @@
     <ion-refresher pulling-text="Pull To Refresh" on-refresh="doRefresh()"
               refreshing-text="Fetching ..." refreshing-icon="ion-loading-b"
             ></ion-refresher>
-    <div class="list" ng-repeat="parkinglot in parkinglots | orderBy:-'free'"> <!-- track by $index -->
+    <div class="list" ng-repeat="parkinglot in parkinglots | orderBy:-'distance'"> <!-- track by $index -->
       <div class="item item-divider">
         {{parkinglot.name}} ({{parkinglot.zone}})
       </div>
-      <a class="item item-icon-center">
+      <div class="item item-icon-center">
         <div class="row">
           <div class="col">
-            <span style="font-size: 22px; color:grey">{{parkinglot.distance}} km</span>
+            <span style="font-size: 22px; color:grey">{{parkinglot.distance}}</span>
             <!--temp init ng-init="distance(parkinglot.lat, parkinglot.lon,parkinglot.$loki);" -->
           </div>
           <div class="col">
             <span class="balanced" style="font-size: 22px">{{parkinglot.free}} </span><i class="ion-android-car balanced" style="font-size: 22px"></i>
           </div>
           <div class="col">
-            <button class="button button-small button-energized">
+            <button class="button button-small button-energized" ng-click="window.open('geo:parkinglot.lat,parkinglot.lat?q=address', '_system');">
               <i class="icon ion-ios-location"> Come on!</i>
             </button>
           </div>
@@ -33,7 +33,7 @@
           </div>
         </div>
 
-      </a>
+      </div>
     </div>
   </ion-content>
 </ion-view>
