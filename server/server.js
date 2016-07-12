@@ -5,7 +5,6 @@ var db = new loki('db.json');
 var distance = require('google-distance');
 distance.apiKey = 'AIzaSyDwPR0l-lTpVFzEXihsfEX0tdCds2bbrfk';
 
-/* Function auxiliar, devuelve false si alguno de los elementos en el array no tiene distance */
 function isDistanceFilledUp(arr_data)
 {
   var is_filled_up = true;
@@ -17,12 +16,6 @@ function isDistanceFilledUp(arr_data)
   return is_filled_up;
 }
 
-
-/* Function para hacer las llamadas asincronas a google.
-Para cada elemento de la array crea una nueva llamada
-En la respuesta, si las otras llamadas han sido ya resueltas, pasa el control
-al usuario mediante callback. Si alguna de las llamadas a google dan error,
-tambien se pasa el control al usuario con callback creando un nuevo error */
 function getDistancesFromGoogleAPI(arr_data, callback)
 {
   arr_data.forEach(function(elem_data){
